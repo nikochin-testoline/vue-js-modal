@@ -4,13 +4,21 @@ import PluginCore from './PluginCore'
 
 const Plugin = {
   install(Vue, options = {}) {
-    if (Vue.prototype.$modal) {
+    const dynamicName = options.dynamicName || '$modal'
+
+    if (Vue.prototype[dynamicName]) {
       return
     }
 
     const plugin = new PluginCore(Vue, options)
 
-    Object.defineProperty(Vue.prototype, options.dynamicName || '$modal', {
+    Object.defineProperty(Vue.prototype, '__vmodal__', {
+      get: function() {
+        return this[dynamicName]
+      }
+    })
+
+    Object.defineProperty(Vue.prototype, dynamicName, {
       get: function() {
         /**
          * The "this" scope is the scope of the component that calls this.$modal

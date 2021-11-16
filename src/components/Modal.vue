@@ -229,7 +229,7 @@ export default {
    * Sets global listeners
    */
   beforeMount() {
-    this.$modal.subscription.$on('toggle', this.onToggle)
+    this.__vmodal__.subscription.$on('toggle', this.onToggle)
 
     window.addEventListener('resize', this.onWindowResize)
     window.addEventListener('orientationchange', this.onWindowResize)
@@ -264,7 +264,7 @@ export default {
    * Removes global listeners
    */
   beforeDestroy() {
-    this.$modal.subscription.$off('toggle', this.onToggle)
+    this.__vmodal__.subscription.$off('toggle', this.onToggle)
 
     window.removeEventListener('resize', this.onWindowResize)
     window.removeEventListener('orientationchange', this.onWindowResize)
@@ -539,7 +539,7 @@ export default {
 
     onEscapeKeyUp(event) {
       if (event.which === 27 && this.visible) {
-        this.$modal.hide(this.name)
+        this.__vmodal__.hide(this.name)
       }
     },
 

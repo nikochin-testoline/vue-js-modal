@@ -1,6 +1,6 @@
 <template>
   <component
-    :is="$modal.context.componentName"
+    :is="__vmodal__.context.componentName"
     name="dialog"
     height="auto"
     :classes="['vue-dialog', params.class]"

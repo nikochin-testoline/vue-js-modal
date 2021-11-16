@@ -11,7 +11,7 @@
         :is="modal.component"
         v-bind="modal.componentAttrs"
         v-on="$listeners"
-        @close="$modal.hide(modal.modalAttrs.name, $event)"
+        @close="__vmodal__.hide(modal.modalAttrs.name, $event)"
       >
         <template v-for="(slot, key) in modal.componentSlots" #[key]="scope">
           <VNode :node="slot" :key="key" :scope="scope" />
@@ -42,7 +42,7 @@ export default {
     this.$root.__modalContainer = this
   },
   mounted() {
-    this.$modal.subscription.$on('hide-all', () => {
+    this.__vmodal__.subscription.$on('hide-all', () => {
       this.modals = []
     })
   },
@@ -67,7 +67,7 @@ export default {
       })
 
       this.$nextTick(() => {
-        this.$modal.show(name)
+        this.__vmodal__.show(name)
       })
     },
     remove(id) {
