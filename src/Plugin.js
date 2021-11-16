@@ -10,7 +10,7 @@ const Plugin = {
 
     const plugin = new PluginCore(Vue, options)
 
-    Object.defineProperty(Vue.prototype, '$modal', {
+    Object.defineProperty(Vue.prototype, options.dynamicName || '$modal', {
       get: function() {
         /**
          * The "this" scope is the scope of the component that calls this.$modal
