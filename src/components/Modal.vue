@@ -414,7 +414,6 @@ export default {
      */
     modalStyle() {
       return [
-        this.stylesProp,
         {
           top: this.position.top + 'px',
           left: this.position.left + 'px',
@@ -422,7 +421,8 @@ export default {
           height: this.isAutoHeight
             ? this.autoHeight
             : this.trueModalHeight + 'px'
-        }
+        },
+        this.stylesProp,
       ]
     },
 
